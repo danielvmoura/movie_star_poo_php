@@ -3,6 +3,8 @@
 require_once("globals.php");
 require_once("db.php");
 
+$flassMessage = [];
+
 ?>
 
 <!DOCTYPE html>
@@ -35,7 +37,7 @@ require_once("db.php");
             </button>
             <!-- FORMULÁRIO DE BUSCA -->
             <form action="" method="GET" id="search-form" class="form-inline my-2 my-lg-0">
-                <input type="text" name="q" id="search" class="form-control mr-sm-2" type="search" placeholder="Buscar TÍtulos" aria-label="Search">
+                <input type="text" name="q" id="search" class="form-control mr-sm-2" type="search" placeholder="Buscar Títulos" aria-label="Search">
                 <button class="btn my-2 my-sm-0" type="submit">
                     <i class="fas fa-search"></i>
                 </button>
@@ -50,3 +52,9 @@ require_once("db.php");
             </div>
         </nav>
     </header>
+
+    <?php if (!empty($flassMessage["msg"])): ?>
+        <div class="msg-container">
+            <p class="msg <?= $flassMessage["type"] ?>"><?= $flassMessage["msg"] ?></p>
+        </div>
+    <?php endif; ?>
