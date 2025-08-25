@@ -30,6 +30,8 @@ class UserDAO implements UserDAOInterface
         $user->image = $data["image"];
         $user->bio = $data["bio"];
         $user->token = $data["token"];
+
+        return $user;
     }
 
     public function create(User $user, $authUser = false)
@@ -56,7 +58,29 @@ class UserDAO implements UserDAOInterface
 
     public function update(User $user) {}
 
-    public function verifyToken($protected = false) {}
+    public function verifyToken($protected = false)
+    {
+
+        if (!empty($_SESSION["token"])) {
+
+            //Pega o token da session
+            $token = $_SESSION["token"];
+
+            $user = $this->findByToken($token);
+
+            if ($user) {
+                return $user;
+            } else if ($protected) {
+
+                //Redireciona user não autenticado
+                $this->message->setMessage("Faça a autenticação para acessar essa página!", "error", "index.php");
+            }
+        } else if ($protected) {
+
+            //Redireciona user não autenticado
+            $this->message->setMessage("Faça a autenticação para acessar essa página!", "error", "index.php");
+        }
+    }
 
     public function setTokenToSession($token, $redirect = true)
     {
@@ -66,7 +90,7 @@ class UserDAO implements UserDAOInterface
 
         if ($redirect) {
             //Redireciona para o perfil do user
-            $this->message->setMessage("Seja bem-vindo!", "success", "editprofile.php");
+            $this->message->setMessage("Seja bem-vindo!", "succes", "editprofile.php");
         }
     }
 
@@ -98,7 +122,39 @@ class UserDAO implements UserDAOInterface
 
     public function findById($id) {}
 
-    public function findByToken($token) {}
+    public function findByToken($token)
+    {
+
+        if ($token != "") {
+
+            $stmt = $this->conn->prepare("SELECT * FROM users WHERE token = :token");
+
+            $stmt->bindParam(":token", $token);
+
+            $stmt->execute();
+
+            if ($stmt->rowCount() > 0) {
+                $data = $stmt->fetch();
+                $user = $this->buildUser($data);
+
+                return $user;
+            } else {
+                return false;
+            }
+        } else {
+            return false;
+        }
+    }
+
+    public function destroyToken()
+    {
+
+        //Remove o Token da session
+        $_SESSION["token"] = "";
+
+        //Redirecionar e apresentar a mensagem de sucesso
+        $this->message->setMessage("Deslogado com sucesso", "succes", "index.php");
+    }
 
     public function changePassword(User $user) {}
 }
