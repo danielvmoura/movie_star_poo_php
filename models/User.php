@@ -11,6 +11,18 @@ class User
     public $image;
     public $bio;
     public $token;
+
+    //Função para gerar Token
+    //Aqui não coloquei esse função no DAO, para dividir a responsa, para deixar lá só oq vai interagir com o BD
+    public function generateToken()
+    {
+        return bin2hex(random_bytes(50));
+    }
+
+    public function generatePassword($password)
+    {
+        return password_hash($password, PASSWORD_DEFAULT);
+    }
 }
 
 interface UserDAOInterface

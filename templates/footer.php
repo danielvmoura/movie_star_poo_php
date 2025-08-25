@@ -16,7 +16,7 @@
         <ul>
             <li><a href="#">Adicionar Filme</a></li>
             <li><a href="#">Adicionar Crítica</a></li>
-            <li><a href="#">Entrar / Registrar</a></li>
+            <li><a href="<?= $BASE_URL ?>auth.php">Entrar / Registrar</a></li>
         </ul>
     </div>
     <p>&copy; 2025 Daniel Moura</p>
