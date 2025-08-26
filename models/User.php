@@ -12,6 +12,11 @@ class User
     public $bio;
     public $token;
 
+    public function getFullName($user)
+    {
+        return $user->name . " " . $user->lastname;
+    }
+
     //Função para gerar Token
     //Aqui não coloquei esse função no DAO, para dividir a responsa, para deixar lá só oq vai interagir com o BD
     public function generateToken()
@@ -22,6 +27,11 @@ class User
     public function generatePassword($password)
     {
         return password_hash($password, PASSWORD_DEFAULT);
+    }
+
+    public function imageGenerateName()
+    {
+        return bin2hex(random_bytes(60)) . ".jpg";
     }
 }
 
