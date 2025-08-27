@@ -269,6 +269,137 @@
   padding-top: 7px;
 }
 
+/* MOVIE */
+.movie-container {
+    text-align: center;
+}
+
+.movie-details {
+    margin: 25px 0;
+}
+
+.pipe {
+    border: 1px solid #333;
+    margin: 0 10px;
+}
+
+#reviews-title {
+    margin-bottom: 25px;
+}
+
+#review-form-container {
+    background-color: #333;
+    padding: 20px;
+}
+
+#review-form-container select,
+#review-form-container textarea,
+#review-form-container .card-btn {
+    width: 50%;
+}
+
+#reviews-container {
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 4px solid #F5C518;
+}
+
+.review {
+    padding: 20px 0;
+    border-bottom: 1px solid #333;
+}
+
+.author-details-container {
+    padding-top: 20px;
+}
+
+.author-name a {
+    color: #F5C518;
+    text-decoration: none;
+}
+
+.comment-title {
+    color: #999;
+}
+
+/* DASHBOARD */
+
+#add-movie-container {
+    text-align: right;
+}
+
+#add-movie-container .card-btn {
+    width: 160px;    
+}
+
+#movies-dashboard .table td,
+#movies-dashboard .table th{
+    background-color: transparent !important; /* Remove o fundo da tabela */
+    color: #FFF;
+}
+
+#movies-dashboard .table th {
+    border-top: none;
+}
+
+#movies-dashboard .table tr {
+    padding: 15px 0;
+}
+
+.table-movie-title {
+    color: #fff;
+    font-weight: bold;
+    transition: .5s;
+    text-decoration: none;
+}
+
+.table-movie-title:hover {
+    color: #F5C518;
+}
+
+.actions-column {
+    max-width: 75px;
+    text-align: center;
+}
+
+.actions-column form {
+    display: inline-block;
+}
+
+.edit-btn,
+.delete-btn {
+    padding: 5px 10px;
+    border-radius: 5px;
+    margin: 0 5px;
+    font-weight: bold;
+    transition: .5s;
+    border: none;
+}
+
+.edit-btn {
+    background-color: #0dcaf0;
+    color: #fff;
+    text-decoration: none;
+}
+
+.edit-btn:hover {
+    background-color: transparent;
+    color: #0dcaf0;
+}
+
+.delete-btn {
+    background-color: #dc3545;
+    color: #fff;
+    text-decoration: none;
+}
+
+.delete-btn:hover {
+    background-color: transparent;
+    color: #dc3545;
+}
+
+
+
 /* FOOTER */
 
 #footer {

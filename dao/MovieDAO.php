@@ -82,9 +82,50 @@ class MovieDAO implements MovieDAOInterface
         return $movies;
     }
 
-    public function getMoviesByUserId($id) /*Pegar filmes do user específico*/ {}
+    public function getMoviesByUserId($id) /*Pegar filmes do user específico*/
+    {
+        $movies = [];
 
-    public function findById($id) /*Encontrar um filme por id*/ {}
+        $stmt = $this->conn->prepare("SELECT * FROM movies WHERE users_id = :users_id");
+
+        $stmt->bindParam(":users_id", $id);
+
+        $stmt->execute();
+
+        if ($stmt->rowCount() > 0) {
+
+            $moviesArray = $stmt->fetchAll();
+
+            foreach ($moviesArray as $movie) {
+                $movies[] = $this->buildMovie($movie);
+            }
+        }
+
+        return $movies;
+    }
+
+    public function findById($id) /*Encontrar um filme por id*/
+    {
+        $movie = [];
+
+        $stmt = $this->conn->prepare("SELECT * FROM movies WHERE id = :id");
+
+        $stmt->bindParam(":id", $id);
+
+        $stmt->execute();
+
+        if ($stmt->rowCount() > 0) {
+
+            $movieData = $stmt->fetch();
+
+            $movie = $this->buildMovie($movieData);
+
+            return $movie;
+        } else {
+
+            return false;
+        }
+    }
 
     public function findByTitle($title) /*Encontrar um filme por Título específico*/ {}
 
@@ -113,5 +154,16 @@ class MovieDAO implements MovieDAOInterface
 
     public function update(Movie $movie) {}
 
-    public function destroy($id) {}
+    public function destroy($id)
+    {
+
+        $stmt = $this->conn->prepare("DELETE FROM movies WHERE id = :id");
+
+        $stmt->bindParam(":id", $id);
+
+        $stmt->execute();
+
+        //Redireciona para a Home
+        $this->message->setMessage("Filme deletado com sucesso!", "succes", "dashboard.php");
+    }
 }
