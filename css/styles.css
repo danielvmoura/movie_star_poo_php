@@ -131,6 +131,77 @@
     padding: 40px;
 }
 
+.section-title {
+    font-size: 24px;
+    border-left: 4px solid #F5C518;
+    padding-left: 12px;
+    margin-top: 20px;
+}
+
+.section-description {
+    color: #ccc;
+    font-size: 18px;
+}
+
+.movies-container {
+    display: flex;
+    flex-wrap: wrap;    /*Aqui quando chegar no limite da tela ele quebra a linha*/
+    margin: 0 -15px;
+}
+
+.movie-card {
+    background-color: #1a1a1a;
+    width: 18%;
+    margin-bottom: 30px;
+    margin-left: 1%;
+    margin-right: 1%;
+}
+
+.movie-card .card-img-top {
+    height: 300px;
+    width: 100%;
+    background-size: cover;
+    background-position: center;
+}
+
+.card-title {
+    height: 3rem;
+}
+
+.card-title a {
+    font-size: 16px;
+    color: #fff;
+}
+
+.fas.fa-star {
+    color: #F5C518;
+}
+
+.rating {
+    color: #ccc;
+}
+
+.rate-btn {
+    margin-bottom: 15px;
+    color: #5799ef;
+    background-color: #333;
+    border-color: #333;
+    width: 100%;
+    font-weight: bold;
+}
+
+.rate-btn:hover {
+    background-color: #444;
+    border-color: #444;
+}
+
+.empty-list {
+    text-align: center;
+    font-size: 18px;
+    width: 100%;
+    font-weight: bold;
+}
+
 /* Edit Profile */
 #profile-image-container,
 .profile-image-container {
@@ -169,7 +240,7 @@
 }
 
 .card-btn {
-    margin-top: 25px; /* Afastando botão do formulário*/
+    margin-top: 15px; /* Afastando botão do formulário*/
 }
 
 /* New Movie */

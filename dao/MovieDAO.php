@@ -39,9 +39,48 @@ class MovieDAO implements MovieDAOInterface
 
     public function findAll() /*Econtrar todos os filmes do meu BD*/ {}
 
-    public function getLatestMovies() /*Pegar todos os filmes mas em ordem de adi��oo decrescente*/ {}
+    public function getLatestMovies() /*Pegar todos os filmes mas em ordem de adição decrescente*/
+    {
 
-    public function getMoviesByCategory($category) /*Pegar filmes por determinada categoria*/ {}
+        $movies = [];
+
+        $stmt = $this->conn->query("SELECT * FROM movies ORDER BY id DESC");
+
+        $stmt->execute();
+
+        if ($stmt->rowCount() > 0) {
+
+            $moviesArray = $stmt->fetchAll();
+
+            foreach ($moviesArray as $movie) {
+                $movies[] = $this->buildMovie($movie);
+            }
+        }
+
+        return $movies;
+    }
+
+    public function getMoviesByCategory($category) /*Pegar filmes por determinada categoria*/
+    {
+        $movies = [];
+
+        $stmt = $this->conn->prepare("SELECT * FROM movies WHERE category = :category ORDER BY id DESC");
+
+        $stmt->bindParam(":category", $category);
+
+        $stmt->execute();
+
+        if ($stmt->rowCount() > 0) {
+
+            $moviesArray = $stmt->fetchAll();
+
+            foreach ($moviesArray as $movie) {
+                $movies[] = $this->buildMovie($movie);
+            }
+        }
+
+        return $movies;
+    }
 
     public function getMoviesByUserId($id) /*Pegar filmes do user específico*/ {}
 

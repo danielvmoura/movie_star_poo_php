@@ -13,7 +13,7 @@ $userData = $userDao->verifyToken(true);
 $fullName = $user->getFullName($userData);
 
 //Colocando imagem padrão de perfil do user
-if ($userData->image == "") {
+if (empty($userData->image)) {
     $userData->image = "user.png";
 }
 ?>
