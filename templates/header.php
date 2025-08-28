@@ -49,7 +49,7 @@ $userData = $userDao->verifyToken(false);
                 <i class="fas fa-bars"></i>
             </button>
             <!-- FORMULÁRIO DE BUSCA -->
-            <form action="" method="GET" id="search-form" class="form-inline my-2 my-lg-0">
+            <form action="<?= $BASE_URL ?>search.php" method="GET" id="search-form" class="form-inline my-2 my-lg-0">
                 <input type="text" name="q" id="search" class="form-control mr-sm-2" type="search" placeholder="Buscar Títulos" aria-label="Search">
                 <button class="btn my-2 my-sm-0" type="submit">
                     <i class="fas fa-search"></i>
